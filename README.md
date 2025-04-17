@@ -6,6 +6,9 @@ https://drive.google.com/file/d/1qCH1cacv3DA9wehy7ux1M8F0tLUYwTTY/view?usp=drive
 
         the project is running on localhost:3001 due to unavaibility of 3000 port on my device it can be changed in server.js file
         the database is sample for demonstration contatining around 30 influencers and personalities
+        make sure to complete the node.js setup and node modules folder should be in the project folder itself
+        the sql file should be connected through workbench (recommended) your username and password must be updated in server.js file 
+        as well as name of the database (if you changed it)
        
        
        Department of Electronics and Telecommunication 
