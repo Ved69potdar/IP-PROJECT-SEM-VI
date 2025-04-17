@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Influencer Portal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('https://wallpapers.com/images/hd/4k-social-background-3840-x-2160-90pxcx8w6wg4tfiz.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Dark overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .logo {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 1.5em;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      width: 100%;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    input::placeholder {
+      color: #999;
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    input:focus::placeholder {
+      opacity: 0.3;
+      transform: translateY(-5px);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo (optional: replace src with your logo path) -->
+    <img src="https://cdn-icons-png.flaticon.com/512/7146/7146644.png" alt="Logo" class="logo">
+
+    <h2>Enter Influencer Name</h2>
+    <input type="text" id="nameInput" placeholder="e.g., Elon Musk">
+    <br>
+    <button onclick="goToDashboard()">Go to Dashboard</button>
+  </div>
+
+  <script>
+    function goToDashboard() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name) {
+        window.location.href = `dashboard.html?name=${encodeURIComponent(name)}`;
+      }
+    }
+  </script>
+</body>
+</html>
+

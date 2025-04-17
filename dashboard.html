@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Influencer Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 1.8em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 2.2em;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-size: 1.1em;
+      margin-top: 5px;
+      color: #444;
+    }
+
+    .value {
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div class="header" id="influencerHeader">Influencer Dashboard</div>
+
+  <div class="dashboard" id="dashboardContent">
+    <!-- Cards will be populated by JavaScript -->
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+
+    if (name) {
+      document.getElementById("influencerHeader").textContent = `${name}'s Dashboard`;
+
+      fetch(`/api/influencer?name=${encodeURIComponent(name)}`)
+        .then(res => res.json())
+        .then(data => {
+          const content = document.getElementById("dashboardContent");
+          const attributes = {
+            facebookfollowers: 'fab fa-facebook-f',
+            twitterfollowers: 'fab fa-twitter',
+            instagramfollowers: 'fab fa-instagram',
+            youtubesubscribers: 'fab fa-youtube',
+            fbpageviews: 'fas fa-eye',
+            fblikes: 'fas fa-thumbs-up',
+            instalikes: 'fas fa-heart',
+            instaprofileviews: 'fas fa-user-circle',
+            retweets: 'fas fa-retweet',
+            twitterlikes: 'fas fa-heart',
+            ytlikes: 'fas fa-thumbs-up',
+            ytviews: 'fas fa-play'
+          };
+
+          for (const key in attributes) {
+            const icon = attributes[key];
+            const value = data[key] || 'N/A';
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <i class="${icon}"></i>
+              <div class="label">${key.replace(/([a-z])([A-Z])/g, '$1 $2')}</div>
+              <div class="value">${value}</div>
+            `;
+            content.appendChild(card);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById("dashboardContent").innerHTML = `<p style="color:red;">Error fetching data.</p>`;
+        });
+    }
+  </script>
+</body>
+</html>
