@@ -3,7 +3,9 @@
        
        video upload is currently failing for unknown reasons here is the drive link for demonstration:
 https://drive.google.com/file/d/1qCH1cacv3DA9wehy7ux1M8F0tLUYwTTY/view?usp=drive_link
-       
+
+        the project is running on localhost:3001 due to unavaibility of 3000 port on my device it can be changed in server.js file
+        the database is sample for demonstration contatining around 30 influencers and personalities
        
        
        Department of Electronics and Telecommunication 
